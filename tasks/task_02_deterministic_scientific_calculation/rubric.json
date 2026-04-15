@@ -1,0 +1,128 @@
+{
+  "task_id": "task_02_conditional_entropy",
+  "title": "Conditional Entropy Decomposition with a Latent Variable",
+  "scoring_model": "deterministic",
+  "total_weight": 100,
+  "numerical_tolerance": 0.001,
+  "grading_note": "This task has a unique correct answer at each step. Evaluate intermediate values independently; a model that recovers a correct final value via compensating errors should not receive full credit on the erroneous intermediate steps. Numerical tolerance is ±0.001 bits on all reported values.",
+  "rubrics": [
+    {
+      "id": "R01",
+      "criterion": "Verifies or implicitly confirms that the joint table sums to 1.0 before proceeding. A model that proceeds without this check and makes a downstream normalization error should lose credit here.",
+      "weight": 3
+    },
+    {
+      "id": "R02",
+      "criterion": "Correctly computes P(Y) by marginalizing over both X and Z. Required values: P(y1)=0.40, P(y2)=0.30, P(y3)=0.30.",
+      "target_values": {"P(y1)": 0.40, "P(y2)": 0.30, "P(y3)": 0.30},
+      "weight": 5
+    },
+    {
+      "id": "R03",
+      "criterion": "Correctly computes H(Y) = 1.5710 bits (tolerance ±0.001).",
+      "target_value": 1.5710,
+      "weight": 5
+    },
+    {
+      "id": "R04",
+      "criterion": "Correctly computes P(X,Y) by marginalizing over Z. Key values: P(x1,y1)=0.18, P(x2,y1)=0.22, P(x1,y3)=0.20, P(x2,y3)=0.10.",
+      "target_values": {"P(x1,y1)": 0.18, "P(x2,y1)": 0.22, "P(x1,y3)": 0.20, "P(x2,y3)": 0.10},
+      "weight": 4
+    },
+    {
+      "id": "R05",
+      "criterion": "Correctly computes P(X): P(x1)=0.50, P(x2)=0.50. Note that symmetric marginals do not license shortcutting the weighted average in H(Y|X).",
+      "target_values": {"P(x1)": 0.50, "P(x2)": 0.50},
+      "weight": 3
+    },
+    {
+      "id": "R06",
+      "criterion": "Correctly computes P(Y|X=x1): (0.36, 0.24, 0.40) and P(Y|X=x2): (0.44, 0.36, 0.20). Tolerance ±0.001 on each value.",
+      "target_values": {
+        "P(y1|x1)": 0.36, "P(y2|x1)": 0.24, "P(y3|x1)": 0.40,
+        "P(y1|x2)": 0.44, "P(y2|x2)": 0.36, "P(y3|x2)": 0.20
+      },
+      "weight": 5
+    },
+    {
+      "id": "R07",
+      "criterion": "Correctly computes H(Y|X=x1)=1.5535 bits and H(Y|X=x2)=1.5161 bits (tolerance ±0.001 each).",
+      "target_values": {"H(Y|X=x1)": 1.5535, "H(Y|X=x2)": 1.5161},
+      "weight": 5
+    },
+    {
+      "id": "R08",
+      "criterion": "Correctly computes H(Y|X) as the P(X)-weighted average of per-condition entropies, yielding 1.5348 bits. A model that takes an unweighted average (1.5348 coincidentally correct here but wrong in general) should receive credit only if the weighted formula is explicitly stated.",
+      "target_value": 1.5348,
+      "weight": 6
+    },
+    {
+      "id": "R09",
+      "criterion": "Correctly computes I(X;Y) = H(Y) - H(Y|X) = 0.0361 bits (tolerance ±0.001).",
+      "target_value": 0.0361,
+      "weight": 6
+    },
+    {
+      "id": "R10",
+      "criterion": "Correctly computes P(Z): P(z1)=0.40, P(z2)=0.60.",
+      "target_values": {"P(z1)": 0.40, "P(z2)": 0.60},
+      "weight": 3
+    },
+    {
+      "id": "R11",
+      "criterion": "Correctly computes P(X,Z) and derives P(X|Z): P(x1|z1)=0.75, P(x2|z1)=0.25, P(x1|z2)=1/3, P(x2|z2)=2/3 (tolerance ±0.001).",
+      "target_values": {"P(x1|z1)": 0.75, "P(x2|z1)": 0.25, "P(x1|z2)": 0.3333, "P(x2|z2)": 0.6667},
+      "weight": 4
+    },
+    {
+      "id": "R12",
+      "criterion": "Correctly computes H(Y|Z=z1)=1.5589 bits and H(Y|Z=z2)=1.5656 bits, and H(Y|Z)=1.5629 bits (tolerance ±0.001 each).",
+      "target_values": {"H(Y|Z=z1)": 1.5589, "H(Y|Z=z2)": 1.5656, "H(Y|Z)": 1.5629},
+      "weight": 6
+    },
+    {
+      "id": "R13",
+      "criterion": "Correctly computes all four conditional distributions P(Y|X=x,Z=z) and their entropies. Key values: H(Y|x2,z1)=0.9710 bits (the most distinctive cell due to the zero-probability entry), H(Y|x1,z2)=1.4855 bits.",
+      "target_values": {"H(Y|x1,z1)": 1.5656, "H(Y|x1,z2)": 1.4855, "H(Y|x2,z1)": 0.9710, "H(Y|x2,z2)": 1.5395},
+      "weight": 8
+    },
+    {
+      "id": "R14",
+      "criterion": "Correctly applies the zero-probability convention 0*log2(0)=0 when computing H(Y|x2,z1), where P(y3|x2,z1)=0. A model that reports an error or undefined result at this step should not receive credit for R13.",
+      "weight": 4
+    },
+    {
+      "id": "R15",
+      "criterion": "Correctly assembles H(Y|X,Z) as a double sum weighted by P(z)*P(x|z), yielding 1.4797 bits (tolerance ±0.001). The four weights must sum to 1.0.",
+      "target_value": 1.4797,
+      "weight": 7
+    },
+    {
+      "id": "R16",
+      "criterion": "Correctly computes I(X;Y|Z) = H(Y|Z) - H(Y|X,Z) = 0.0832 bits (tolerance ±0.001).",
+      "target_value": 0.0832,
+      "weight": 6
+    },
+    {
+      "id": "R17",
+      "criterion": "Correctly computes I(X;Z→Y) = I(X;Y) - I(X;Y|Z) = -0.0471 bits (tolerance ±0.001). A model that reports a positive value or flags this as an error without reporting the signed result should not receive full credit.",
+      "target_value": -0.0471,
+      "weight": 7
+    },
+    {
+      "id": "R18",
+      "criterion": "Verifies the chain rule: I(X;Y|Z) + I(X;Z→Y) = I(X;Y), confirming that 0.0832 + (-0.0471) = 0.0361.",
+      "weight": 4
+    },
+    {
+      "id": "R19",
+      "criterion": "Correctly interprets the negative value of I(X;Z→Y) as indicating that conditioning on Z reveals more association between X and Y than is apparent marginally — a Simpson's paradox-like structure. Does not flag the negative value as a computation error.",
+      "weight": 8
+    },
+    {
+      "id": "R20",
+      "criterion": "Maintains error-free propagation across all five steps — no intermediate rounding that causes downstream values to fall outside tolerance, and no values carried forward from an incorrect step without acknowledgment.",
+      "weight": 6
+    }
+  ]
+}

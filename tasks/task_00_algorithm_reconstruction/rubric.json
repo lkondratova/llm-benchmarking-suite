@@ -1,0 +1,97 @@
+{
+  "task_id": "task_00_algorithm_reconstruction",
+  "title": "Probabilistic Ensemble Scoring over Structured Outputs",
+  "total_weight": 100,
+  "rubrics": [
+    {
+      "id": "R01",
+      "criterion": "Correctly parses dot-bracket notation to extract base pairs using a stack-based or equivalent algorithm.",
+      "weight": 6
+    },
+    {
+      "id": "R02",
+      "criterion": "Correctly identifies all unpaired nucleotide positions in each structure.",
+      "weight": 4
+    },
+    {
+      "id": "R03",
+      "criterion": "Correctly classifies each base pair as GC, AU/GU, or other, based on the sequence.",
+      "weight": 6
+    },
+    {
+      "id": "R04",
+      "criterion": "Correctly assigns energy contributions to all base pairs according to the energy model.",
+      "weight": 6
+    },
+    {
+      "id": "R05",
+      "criterion": "Correctly applies the +1 unpaired nucleotide penalty for every unpaired position.",
+      "weight": 4
+    },
+    {
+      "id": "R06",
+      "criterion": "Correctly computes total free energy ΔG for each structure by summing all contributions.",
+      "weight": 7
+    },
+    {
+      "id": "R07",
+      "criterion": "Correctly converts ΔG into unnormalized weight using exp(−ΔG / RT) with the provided constants.",
+      "weight": 7
+    },
+    {
+      "id": "R08",
+      "criterion": "Correctly computes the partition function Z as the sum of all unnormalized weights.",
+      "weight": 5
+    },
+    {
+      "id": "R09",
+      "criterion": "Correctly computes normalized probabilities by dividing each weight by Z.",
+      "weight": 6
+    },
+    {
+      "id": "R10",
+      "criterion": "Normalized probabilities sum to 1.0 within a reasonable numerical tolerance (≤ 0.001).",
+      "weight": 4
+    },
+    {
+      "id": "R11",
+      "criterion": "Correctly identifies which candidate structures contain the target base pair (1,6).",
+      "weight": 6
+    },
+    {
+      "id": "R12",
+      "criterion": "Correctly excludes structures that do not contain the target pair from the marginal probability sum.",
+      "weight": 4
+    },
+    {
+      "id": "R13",
+      "criterion": "Correctly aggregates probabilities of qualifying structures to compute p(1,6).",
+      "weight": 6
+    },
+    {
+      "id": "R14",
+      "criterion": "Maintains consistent 1-based indexing throughout without off-by-one errors.",
+      "weight": 5
+    },
+    {
+      "id": "R15",
+      "criterion": "Correctly handles non-canonical base pairs (e.g., G–G, C–C) using the 'other' energy rule.",
+      "weight": 5
+    },
+    {
+      "id": "R16",
+      "criterion": "Detects or acknowledges the length mismatch in y5 (7 characters vs. 6-nucleotide sequence).",
+      "weight": 6
+    },
+    {
+      "id": "R17",
+      "criterion": "Final numeric answer is consistent with all intermediate calculations (within tolerance ≤ 0.005).",
+      "weight": 6
+    },
+    {
+      "id": "R18",
+      "criterion": "Reasoning is coherent and links structure parsing → energy computation → probabilistic normalization → final aggregation without logical gaps.",
+      "weight": 7
+    }
+  ]
+}

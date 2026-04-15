@@ -1,0 +1,118 @@
+{
+  "task_id": "task_01_atac_seq_qc",
+  "title": "ATAC-seq Sample QC Decision",
+  "scoring_model": "range-based",
+  "total_weight": 100,
+  "grading_note": "This task is non-deterministic. Rubric criteria assess reasoning quality and internal consistency, not agreement with a specific answer. Where ranges are specified, any threshold or classification within the stated range earns full credit. Thresholds outside the range may earn partial credit if well-justified.",
+  "rubrics": [
+    {
+      "id": "R01",
+      "criterion": "States explicit numerical thresholds for TSS Enrichment with a PASS cutoff in the range [5, 8]. Cutoffs outside this range require strong justification to earn partial credit.",
+      "acceptable_range": "PASS cutoff: 5–8",
+      "weight": 5
+    },
+    {
+      "id": "R02",
+      "criterion": "States explicit numerical thresholds for FRiP with a PASS cutoff in the range [0.20, 0.35]. Acknowledges that FRiP is depth-dependent.",
+      "acceptable_range": "PASS cutoff: 0.20–0.35",
+      "weight": 5
+    },
+    {
+      "id": "R03",
+      "criterion": "States explicit numerical thresholds for library complexity (NRF) with a PASS cutoff in the range [0.70, 0.85].",
+      "acceptable_range": "PASS cutoff: 0.70–0.85",
+      "weight": 4
+    },
+    {
+      "id": "R04",
+      "criterion": "States explicit numerical thresholds for MT read fraction with a PASS cutoff in the range [0.10, 0.20]. Notes that high MT fraction suggests nuclear isolation failure or cell lysis.",
+      "acceptable_range": "PASS cutoff: 0.10–0.20",
+      "weight": 4
+    },
+    {
+      "id": "R05",
+      "criterion": "Provides a rationale for each threshold that references published guidelines, known biological context, or explicit tradeoff reasoning. Citing 'ENCODE' or equivalent is sufficient; inventing authority is not.",
+      "weight": 6
+    },
+    {
+      "id": "R06",
+      "criterion": "Correctly classifies S1 as PASS. S1 passes all metrics by a wide margin and any defensible threshold set should produce this outcome.",
+      "expected": "PASS",
+      "weight": 4
+    },
+    {
+      "id": "R07",
+      "criterion": "Correctly classifies S5 as FAIL. S5 fails all four metrics and no defensible threshold set should produce PASS or BORDERLINE for this sample.",
+      "expected": "FAIL",
+      "weight": 6
+    },
+    {
+      "id": "R08",
+      "criterion": "Correctly classifies S2 as FAIL or BORDERLINE. FAIL is the expected call given TSS enrichment of 3.1, but BORDERLINE with strong caveats is acceptable if the MT fraction (0.08) and NRF (0.61) are cited as mitigating factors. PASS is not acceptable.",
+      "expected": "FAIL (BORDERLINE acceptable with caveats)",
+      "weight": 5
+    },
+    {
+      "id": "R09",
+      "criterion": "Correctly classifies S6 as PASS. S6 passes all metrics and any defensible threshold set should produce this outcome.",
+      "expected": "PASS",
+      "weight": 4
+    },
+    {
+      "id": "R10",
+      "criterion": "Treats S4 as BORDERLINE or provides a well-reasoned case for PASS or FAIL. Given that S4 is marginal on all four metrics simultaneously, BORDERLINE is the expected call, but a consistent threshold set that places S4 in PASS or FAIL is acceptable if applied uniformly.",
+      "expected": "BORDERLINE (PASS or FAIL acceptable if threshold-consistent)",
+      "weight": 6
+    },
+    {
+      "id": "R11",
+      "criterion": "Provides a BORDERLINE category (or equivalent) rather than forcing all samples into a binary PASS/FAIL. Acknowledges that borderline calls require contextual judgment.",
+      "weight": 5
+    },
+    {
+      "id": "R12",
+      "criterion": "For at least one borderline or marginal sample, articulates a specific downstream consequence of including a low-quality sample (e.g., inflated peak counts, reduced reproducibility, footprinting artifacts).",
+      "weight": 6
+    },
+    {
+      "id": "R13",
+      "criterion": "For at least one borderline sample, states conditions under which inclusion or exclusion would be preferred, rather than giving an unconditional verdict.",
+      "weight": 5
+    },
+    {
+      "id": "R14",
+      "criterion": "Applies thresholds consistently across all samples. A model that applies stricter rules to some samples than others without explanation should lose credit here.",
+      "weight": 6
+    },
+    {
+      "id": "R15",
+      "criterion": "Provides a batch-level assessment that goes beyond repeating per-sample verdicts. Acceptable batch-level observations include: identifying a pattern, proposing a systemic cause, or commenting on the suitability of the batch for downstream analysis.",
+      "weight": 6
+    },
+    {
+      "id": "R16",
+      "criterion": "Notes that the co-occurrence of high MT fraction and low TSS enrichment in failing samples (S4, S5, and to a lesser extent S2) may indicate a shared technical failure mode (e.g., poor nuclear isolation, lysis artifact) rather than independent sample failures.",
+      "weight": 6
+    },
+    {
+      "id": "R17",
+      "criterion": "Does not classify S5 as PASS or BORDERLINE under any threshold set. S5's combined metric profile (TSS 1.9, FRiP 0.11, NRF 0.45, MT 0.31) represents an unambiguous failure.",
+      "weight": 5
+    },
+    {
+      "id": "R18",
+      "criterion": "Uses appropriately hedged language when discussing borderline cases (e.g., 'may be acceptable', 'warrants further review', 'depending on experimental goals'). Overconfident binary verdicts on borderline samples should be penalized.",
+      "weight": 5
+    },
+    {
+      "id": "R19",
+      "criterion": "Acknowledges that thresholds are not universal and that context (cell type, depth, protocol) affects acceptable values. Does not present thresholds as absolute or organism-independent.",
+      "weight": 5
+    },
+    {
+      "id": "R20",
+      "criterion": "Overall response is coherent: threshold choices, sample classifications, and batch assessment are logically consistent with each other. No internal contradictions between sections.",
+      "weight": 7
+    }
+  ]
+}
