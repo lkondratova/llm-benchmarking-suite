@@ -70,5 +70,5 @@ The model computes weights but reports them as probabilities without dividing by
 **Algorithmic complexity:** Low (all steps are O(n) in sequence length).
 
 ## Sources
-https://doi.org/10.48550/arXiv.2603.02283
-https://doi.org/10.1093/bioinformatics/btaa460
+- https://doi.org/10.48550/arXiv.2603.02283
+- https://doi.org/10.1093/bioinformatics/btaa460
