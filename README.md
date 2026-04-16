@@ -42,14 +42,10 @@ The goal is to demonstrate how to design robust, fair, and scientifically ground
 ```plaintext
 tasks/
 ├── task_00_algorithm_reconstruction/
-├── task_01_entropy_analysis/
-├── task_02_atac_seq_variability/
-├── task_03_pipeline_qc/
-├── task_04_reasoning_trap/
-├── task_05_variability_analysis/
-├── task_06_ambiguity_detection/
-└── task_07_evaluation_framework/
+├── task_01_non_deterministic_pipeline/
+├── task_02_deterministic_scientific_calculation/
 
+### To be added
 frameworks/
 ├── deterministic_vs_nondeterministic.md
 ├── grading_strategies.md
